@@ -6,7 +6,7 @@ var mod_crypto = require('crypto');
 
 //--- Functions that run other functions...
 
-function runinNewContextFunc(code, line) {
+function runInNewContextFunc(code, line) {
         var x = {
                 'line': line
         };
@@ -16,6 +16,17 @@ function runinNewContextFunc(code, line) {
                 console.error(e);
                 process.exit(1);
         }
+}
+
+var CACHED_SCRIPT = null;
+function scriptRunInNewContext(code, line) {
+        if (CACHED_SCRIPT === null) {
+                CACHED_SCRIPT = vm.createScript(code);
+        }
+        var x = {
+                'line': line
+        };
+        return CACHED_SCRIPT.runInNewContext(x);
 }
 
 function evalFunc(code, line) {
@@ -88,7 +99,8 @@ var code = 'line.split(\',\')[0]';
 var expected = 'x';
 
 var funcs = [
-//        runinNewContextFunc,
+        runInNewContextFunc,
+        scriptRunInNewContext,
         evalFunc,
         functionFunc,
         cachedFunctionFunc,
