@@ -35,6 +35,35 @@ function cachedFunctionFunc(code, line) {
         return CACHED_FUNC(line);
 }
 
+var CACHED_FUNC_WITH_BIND = null;
+function cachedFunctionWithBindFunc(code, line) {
+        if (CACHED_FUNC_WITH_BIND === null) {
+                //Adding this so the bind works...
+                CACHED_FUNC_WITH_BIND = new Function(
+                        'return this.' + code + ';');
+        }
+        return CACHED_FUNC_WITH_BIND.bind({ 'line': line })();
+}
+
+var CACHED_FUNC_WITH_CALL = null;
+function cachedFunctionWithCallFunc(code, line) {
+        if (CACHED_FUNC_WITH_CALL === null) {
+                CACHED_FUNC_WITH_CALL = new Function(
+                        'line', 'return ' + code + ';');
+        }
+        return CACHED_FUNC_WITH_CALL.call(null, line);
+}
+
+//Same as previous, but binding this
+var CACHED_FUNC_WITH_THIS_CALL = null;
+function cachedFunctionWithThisCallFunc(code, line) {
+        if (CACHED_FUNC_WITH_THIS_CALL === null) {
+                CACHED_FUNC_WITH_THIS_CALL = new Function(
+                        'return this.' + code + ';');
+        }
+        return CACHED_FUNC_WITH_THIS_CALL.call({ 'line': line });
+}
+
 //--- Time
 
 function timeInvocations(f, iters, code, line) {
@@ -63,6 +92,9 @@ var funcs = [
         evalFunc,
         functionFunc,
         cachedFunctionFunc,
+        cachedFunctionWithBindFunc,
+        cachedFunctionWithCallFunc,
+        cachedFunctionWithThisCallFunc,
         baseline
 ];
 

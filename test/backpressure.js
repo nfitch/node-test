@@ -179,8 +179,7 @@ function demux(readstream, writestreams, cb) {
         for (var i = 0; i < writestreams.length; ++i) {
                 var ws = writestreams[i];
                 ws.on('drain', function () {
-                        var s = this;
-                        var index = waitingForDrain.indexOf(s);
+                        var index = waitingForDrain.indexOf(this);
                         if (index !== -1) {
                                 waitingForDrain.splice(index, 1);
                         }

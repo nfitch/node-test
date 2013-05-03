@@ -27,3 +27,8 @@ for (var i = 0; i < 10; ++i) {
 for (var j = 0; j < 10; ++j) {
         funcs[j]();
 }
+
+//Trying with new Function...
+var f = new Function('console.log(this.fvar);');
+var opts = { 'fvar': 'foo' };
+f.bind(opts)();
