@@ -1,0 +1,14 @@
+{
+    "name": "node-test",
+    "description": "Testing javascript/node stuff.",
+    "version": "0.0.1",
+    "author": "Nate Fitch",
+    "dependencies": {
+        "lstream": "0.0.3"
+    },
+    "devDependencies": {
+    },
+    "engines": {
+        "node": ">=0.10.21"
+    }
+}
