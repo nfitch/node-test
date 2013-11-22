@@ -14,7 +14,7 @@ var line = 0;
 
 function filter(x) {
     if (x === '') {
-        return (null);
+        return ('-');
     }
     return (x === null ? null : parseInt(x, 10));
 }
@@ -30,6 +30,7 @@ function pp(a, b) {
 function tryNext() {
     //Base case.
     if (l1end && l2end) {
+        console.log('Ended!!');
         return;
     }
 
