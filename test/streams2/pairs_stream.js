@@ -1,4 +1,4 @@
-// Copyright (c) 2013, Nate Fitch, Inc. All rights reserved.
+// Copyright (c) 2013, Nate Fitch. All rights reserved.
 
 var util = require('util');
 var stream = require('stream');
