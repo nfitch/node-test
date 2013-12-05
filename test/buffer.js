@@ -16,3 +16,13 @@ var b2 = Buffer.concat([
         new Buffer(hex2, 'hex')
 ]);
 console.log(b2);
+
+console.log('-------');
+for (var i = 0; i < 10; ++i) {
+    var b = new Buffer(4);
+    b.writeUInt32LE(i, 0);
+    console.log(b);
+}
+var b = new Buffer(4);
+b.writeUInt32LE(255, 0);
+console.log(b);
