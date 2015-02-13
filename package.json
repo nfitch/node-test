@@ -8,7 +8,8 @@
     },
     "author": "Nate Fitch",
     "dependencies": {
-        "lstream": "0.0.4"
+        "lstream": "0.0.4",
+        "restify": "2.8.5"
     },
     "devDependencies": {
     },
